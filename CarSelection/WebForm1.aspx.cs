@@ -12,8 +12,10 @@ namespace CarSelection
     public partial class WebForm1 : System.Web.UI.Page
     {
         public static List<string> carList = new List<string>()
-        { "Aston Martin", "Audi", "BMW",
-            "Cadillac", "Chevrolet","Datsun","Ferrari","Ford","Honda","Mercedes","Nissan","Porsche","Rolls Royce","Toyota","Volkswagen" };
+        { "Mehran", "Alto", "Picanto",
+            "Aqua", "Toyota","Civic",
+            "Renault","Ford","Honda","Mercedes",
+            "Nissan","Porsche","Rolls Royce","Insight","Volkswagen" };
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -24,18 +26,14 @@ namespace CarSelection
             var suggestedList = new List<string>();
             foreach (var car in carList)
             {
-                int l = name.Length;
-                if (car.Length >= l)
+
+
+                if (car.ToLower().Contains(name.ToLower()) && name.Length>0)
                 {
+                    suggestedList.Add(car);
 
-                    if (car.Substring(0, l).ToLower() == name.ToLower())
-                    {
-                        suggestedList.Add(car);
-
-                    }
                 }
             }
-
             return suggestedList;
         }
     }

@@ -4,20 +4,19 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" /
-         rel = "stylesheet">
-      <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
-      <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="container text-center d-flex pt-5">
-         <div class="form-control ">
-             <label for="input">Enter Name of the car</label>
-            <input type="text" id="input" class="form-group" />
+        <div >
+         
+             <label for="input">Enter Name of Car in CarList<br />
+             <br />
+             </label>
+            &nbsp;<input type="text" id="input"  />
         </div>
-            </div>
+
 
     </form>
 
@@ -25,9 +24,10 @@
 
 
    
-    <script>
+<script>
         const inputCar = document.getElementById("input");
-        inputCar.addEventListener("input", () => {
+    inputCar.addEventListener("input", () =>
+    {
             if (!inputCar.value) {
                 BindControls([])
                 return
@@ -47,7 +47,8 @@
             }
             console.log(inputCar.value);
             console.log("Ajax ran");
-        })
+    }
+    )
 
 
 
