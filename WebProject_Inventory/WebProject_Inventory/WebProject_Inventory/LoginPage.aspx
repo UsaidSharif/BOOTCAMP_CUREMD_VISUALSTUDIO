@@ -8,6 +8,17 @@
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
         crossorigin="anonymous">
     <title>LoginPage</title>
+    <script>
+        function validateform(){
+            var UserName = document.getElementById("UserName").value;
+            var Password = document.getElementById("Password").value;
+            if (UserName == "" || Password == "") {
+                alert("Input is Empty");
+                return false;
+            }
+
+        }
+    </script>
 </head>
 <body>
     <div class="container ">
@@ -33,7 +44,7 @@
             <asp:TextBox ID="Password" TextMode="Password" runat="server"></asp:TextBox>
                     <br />
                     <br />
-                    <asp:Button ID="Button_Login" Class="btn btn-dark" runat="server" Text="Login" OnClick="Button_Login_Click" />
+                    <asp:Button ID="Button_Login" Class="btn btn-dark" runat="server" Text="Login" OnClientClick="return  validateform()" OnClick="Button_Login_Click" />
                     <br />
                     <br />
                     <asp:Label ID="Label_ErrorMessage" runat="server" Text=""></asp:Label>

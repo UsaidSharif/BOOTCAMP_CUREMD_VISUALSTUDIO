@@ -72,13 +72,13 @@
 
             <div id="showDiv_edit" style="display:none" class="text-center pt-5 font-weight-bold bg-light">
                 <br />
-                <asp:Label ID="Label_Name" runat="server" Text="Name"></asp:Label>
+                <asp:Label ID="Label_Name" runat="server"  Text="CostPrice"></asp:Label>
 &nbsp;
-                <asp:TextBox ID="TextBox_Name" runat="server"></asp:TextBox>
+                <asp:TextBox ID="TextBox_Name" Type="number" runat="server"></asp:TextBox>
 &nbsp;
-                <asp:Label ID="Label_Address" runat="server" Text="Address"></asp:Label>
+                <asp:Label ID="Label_Address" runat="server"  Text="SalePrice"></asp:Label>
 &nbsp;
-                <asp:TextBox ID="TextBox_Address" runat="server"></asp:TextBox>
+                <asp:TextBox ID="TextBox_Address" Type="number" runat="server"></asp:TextBox>
                 &nbsp;&nbsp;&nbsp;
                 <button type="button"   onclick="EditCustomer()"  class="btn btn-secondary m-1 px-3">UPDATE</button>
                 &nbsp;&nbsp;&nbsp;
@@ -90,7 +90,7 @@
             <div id="showDiv_add" style="display:none" class="text-center pt-5 font-weight-bold bg-light">
                 <br />
 
-                <asp:Label ID="LabelID" runat="server" Text="Item ID"></asp:Label>
+                <asp:Label ID="LabelID" runat="server" Texttype="number" Text ="Item ID"></asp:Label>
                 &nbsp;&nbsp;
                 <asp:TextBox ID="newID" Type="number" runat="server"></asp:TextBox>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -99,13 +99,13 @@
                 <asp:TextBox ID="newName" Type="text" runat="server"></asp:TextBox>
 &nbsp;<br />
                 <br />
-                <asp:Label ID="LabelAddress" runat="server" Text="Item CostPrice"></asp:Label>
+                <asp:Label ID="LabelAddress" runat="server"  Text="Item CostPrice"></asp:Label>
 &nbsp;
-                <asp:TextBox ID="newAddress" Type="text" runat="server"></asp:TextBox>
+                <asp:TextBox ID="newAddress" Type="number" runat="server"></asp:TextBox>
                 &nbsp;&nbsp;&nbsp;
                 <asp:Label ID="Label_saleprice" runat="server" Text="Item SalePrice"></asp:Label>
 &nbsp;
-                <asp:TextBox ID="SalePrice" Type="text" runat="server"></asp:TextBox>
+                <asp:TextBox ID="SalePrice" Type="number" runat="server"></asp:TextBox>
                  &nbsp;&nbsp;&nbsp;
                 <br />
                 <br />
@@ -113,7 +113,8 @@
                 &nbsp;&nbsp;&nbsp;
                 
                 <button id="Button_cancel" type="button"   onclick="addCustomer_hidediv()"  class="btn btn-secondary m-1 px-3">CANCEL</button>
-                
+                <br />
+                <asp:Label ID="status" runat="server"  Text=""></asp:Label>
             </div>
 
             <div class="m-5 bg-secondary p-3 font-weight-bold ">

@@ -111,30 +111,32 @@ namespace WebProject_Inventory
             HttpContext.Current.Session["Item"] = list;
             return js3.Serialize(list);
         }
-        //[WebMethod]
-        //public static string EditCustomers(string id, string name, string address)
-        //{
-        //    List<Item_Class> list = (List<Item_Class>)HttpContext.Current.Session["Item"];
-        //    int ID = Convert.ToInt32(id);
+        [WebMethod]
+        public static string EditCustomers(string id, string CostPrice, string SalePrice)
+        {
+            List<Item_Class> list = (List<Item_Class>)HttpContext.Current.Session["Item"];
+            int ID = Convert.ToInt32(id);
+            int COSTPRICE = Convert.ToInt32(CostPrice);
+            int SALEPRICE = Convert.ToInt32(SalePrice);
 
-        //    for (int i = 0; i < list.Count; i++)
-        //    {
-        //        if (ID == list[i].ID)
-        //        {
-        //            if (name != "")
-        //            {
-        //                list[i].Name = name;
-        //            }
-        //            if (address != "")
-        //            {
-        //                list[i].Address = address;
-        //            }
-        //        }
-        //    }
-        //    JavaScriptSerializer js1 = new JavaScriptSerializer();
-        //    HttpContext.Current.Session["Item"] = list;
-        //    return js1.Serialize(list);
-        //}
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (ID == list[i].ID)
+                {
+                    if (CostPrice != null)
+                    {
+                        list[i].CostPrice = COSTPRICE;
+                    }
+                    if (SalePrice != null)
+                    {
+                        list[i].SalePrice = SALEPRICE;
+                    }
+                }
+            }
+            JavaScriptSerializer js1 = new JavaScriptSerializer();
+            HttpContext.Current.Session["Item"] = list;
+            return js1.Serialize(list);
+        }
 
 
     }

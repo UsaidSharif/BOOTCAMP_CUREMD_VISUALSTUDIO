@@ -101,11 +101,12 @@
                 &nbsp;&nbsp;&nbsp;
                 <br />
                 <br />
-                 <button id="Button_add" type="button"   onclick="addCustomer()"  class="btn btn-secondary m-1 px-3">ADD</button>
+                 <button id="Button_add" type="button"  onclick="addCustomer()"  class="btn btn-secondary m-1 px-3">ADD</button>
                 &nbsp;&nbsp;&nbsp;
                 
                 <button id="Button_cancel" type="button"   onclick="addCustomer_hidediv()"  class="btn btn-secondary m-1 px-3">CANCEL</button>
-                
+                <br />
+                <asp:Label ID="status" runat="server"  Text=""></asp:Label>
             </div>
 
             <div class="m-5 bg-secondary p-3 font-weight-bold ">

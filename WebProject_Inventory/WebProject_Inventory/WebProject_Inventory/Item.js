@@ -35,14 +35,18 @@ function editCustomer(ID) {
     id = ID;
 }
 function EditCustomer() {
-    var name = document.getElementById("TextBox_Name").value;
-    var address = document.getElementById("TextBox_Address").value;
-
-    $.ajax({
+    var CostPrice = document.getElementById("TextBox_Name").value;
+    var SalePrice = document.getElementById("TextBox_Address").value;
+    if (CostPrice == "" || SalePrice == "") {
+        alert("Input is Empty");
+        return false;
+    }
+    else {
+        $.ajax({
         url: 'Items.aspx/EditCustomers',
         method: 'post',
         dataType: 'json',
-        data: JSON.stringify({ "id": ID, "name": name, "address": address }),
+        data: JSON.stringify({ "id": id, "CostPrice": CostPrice, "SalePrice": SalePrice }),
         contentType: 'application/json',
         async: false,
         success: function (data) {
@@ -52,12 +56,13 @@ function EditCustomer() {
                 data: JSON.parse(data.d),
                 columns: [
                     { 'data': 'ID' },
-                    { 'data': 'Name' },
-                    { 'data': 'Address' },
+                    { 'data': 'ItemName' },
+                    { 'data': 'CostPrice' },
+                    { 'data': 'SalePrice' },
                     {
                         'data': 'ID', 'render':
                             function (data) {
-                                return '<button type="button" class="btn btn-secondary m-1" id="editAccountantID" onclick="editCustomer(' + data + ')">Edit</button> <button type="button" class="btn btn-secondary" id="deleteItem" onclick="clearCustomer(' + data + ')">Delete</i></button>'
+                                return '<button type="button" class="btn btn-secondary m-2" id="editAccountantID" onclick="editCustomer(' + data + ')">Edit</button> <button type="button" class="btn btn-secondary" id="deleteItem" onclick="clearCustomer(' + data + ')">Delete</i></button>'
                             }
                     }
                 ]
@@ -66,6 +71,8 @@ function EditCustomer() {
 
     });
 
+    }
+    
 }
 
 function edit_hidediv() {
@@ -89,36 +96,43 @@ function addCustomer() {
     var ItemName = document.getElementById("newName").value;
     var CostPrice = document.getElementById("newAddress").value;
     var SalePrice = document.getElementById("SalePrice").value;
-    $.ajax({
-        url: 'Items.aspx/AddCustomer',
-        method: 'post',
-        dataType: 'json',
-        data: JSON.stringify({ "id": ID,"ItemName": ItemName, "CostPrice": CostPrice, "SalePrice": SalePrice }),
-        contentType: 'application/json',
-        async: false,
-        success: function (data) {
-            var table = $('#myTable').DataTable();
-            table.destroy();
-            $('#myTable').dataTable({
-                data: JSON.parse(data.d),
-                columns: [
-                    { 'data': 'ID' },
-                    { 'data': 'ItemName' },
-                    { 'data': 'CostPrice' },
-                    { 'data': 'SalePrice' },
-                    {
-                        'data': 'ID', 'render':
-                            function (data) {
-                                return '<button type="button" class="btn btn-secondary m-2" id="editAccountantID" onclick="editCustomer(' + data + ')">Edit</button> <button type="button" class="btn btn-secondary" id="deleteItem" onclick="clearCustomer(' + data + ')">Delete</i></button>'
-                            }
-                    }
-                ]
-            });
+    if (CostPrice == "" || SalePrice == "" || ID == "" || ItemName=="" ) {
+        alert("Input is Empty");
+        return false;
+    }
+    else {
+        $.ajax({
+            url: 'Items.aspx/AddCustomer',
+            method: 'post',
+            dataType: 'json',
+            data: JSON.stringify({ "id": ID, "ItemName": ItemName, "CostPrice": CostPrice, "SalePrice": SalePrice }),
+            contentType: 'application/json',
+            async: false,
+            success: function (data) {
+                var table = $('#myTable').DataTable();
+                table.destroy();
+                $('#myTable').dataTable({
+                    data: JSON.parse(data.d),
+                    columns: [
+                        { 'data': 'ID' },
+                        { 'data': 'ItemName' },
+                        { 'data': 'CostPrice' },
+                        { 'data': 'SalePrice' },
+                        {
+                            'data': 'ID', 'render':
+                                function (data) {
+                                    return '<button type="button" class="btn btn-secondary m-2" id="editAccountantID" onclick="editCustomer(' + data + ')">Edit</button> <button type="button" class="btn btn-secondary" id="deleteItem" onclick="clearCustomer(' + data + ')">Delete</i></button>'
+                                }
+                        }
+                    ]
+                });
 
-            $("#status").html("Customer Added!")
-        }
+                $("#status").html("Customer Added!")
+            }
 
-    });
+        });
+    }
+   
 }
 
 function clearCustomer(ID) {

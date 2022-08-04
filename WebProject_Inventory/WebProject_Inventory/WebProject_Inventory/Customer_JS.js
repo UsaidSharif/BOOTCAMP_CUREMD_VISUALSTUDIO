@@ -1,4 +1,12 @@
-﻿$(document).ready(function () {
+﻿ 
+    
+    
+
+
+
+
+
+$(document).ready(function () {
 
     $.ajax({
         url: 'Customers.aspx/GetCustomers',
@@ -36,34 +44,40 @@ function editCustomer(id) {
 function EditCustomer() {
     var name = document.getElementById("TextBox_Name").value;
     var address = document.getElementById("TextBox_Address").value;
-    
-    $.ajax({
-        url: 'Customers.aspx/EditCustomers',
-        method: 'post',
-        dataType: 'json',
-        data: JSON.stringify({ "id": ID, "name": name, "address": address }),
-        contentType: 'application/json',
-        async: false,
-        success: function (data) {
-            var table = $('#myTable').DataTable();
-            table.destroy();
-            $('#myTable').dataTable({
-                data: JSON.parse(data.d),
-                columns: [
-                    { 'data': 'ID' },
-                    { 'data': 'Name' },
-                    { 'data': 'Address' },
-                    {
-                        'data': 'ID', 'render':
-                            function (data) {
-                                return '<button type="button" class="btn btn-secondary m-1" id="editAccountantID" onclick="editCustomer(' + data + ')">Edit</button> <button type="button" class="btn btn-secondary" id="deleteItem" onclick="clearCustomer(' + data + ')">Delete</i></button>'
-                            }
-                    }
-                ]
-            });
-        }
+    if (name == "" || address == "") {
+        alert("Input is Empty");
+        return false;
+    }
+    else {
+        $.ajax({
+            url: 'Customers.aspx/EditCustomers',
+            method: 'post',
+            dataType: 'json',
+            data: JSON.stringify({ "id": ID, "name": name, "address": address }),
+            contentType: 'application/json',
+            async: false,
+            success: function (data) {
+                var table = $('#myTable').DataTable();
+                table.destroy();
+                $('#myTable').dataTable({
+                    data: JSON.parse(data.d),
+                    columns: [
+                        { 'data': 'ID' },
+                        { 'data': 'Name' },
+                        { 'data': 'Address' },
+                        {
+                            'data': 'ID', 'render':
+                                function (data) {
+                                    return '<button type="button" class="btn btn-secondary m-1" id="editAccountantID" onclick="editCustomer(' + data + ')">Edit</button> <button type="button" class="btn btn-secondary" id="deleteItem" onclick="clearCustomer(' + data + ')">Delete</i></button>'
+                                }
+                        }
+                    ]
+                });
+            }
 
-    });
+        });
+    }
+   
 
 }
 
@@ -86,36 +100,44 @@ function addCustomer() {
     var ID = document.getElementById("newID").value;
     var name = document.getElementById("newName").value;
     var address = document.getElementById("newAddress").value;
-    $.ajax({
-        url: 'Customers.aspx/AddCustomer',
-        method: 'post',
-        dataType: 'json',
-        data: JSON.stringify({ "id": ID, "name": name, "address": address }),
-        contentType: 'application/json',
-        async: false,
-        success: function (data) {
-            var table = $('#myTable').DataTable();
-            table.destroy();
-            $('#myTable').dataTable({
-                data: JSON.parse(data.d),
-                columns: [
-                    { 'data': 'ID' },
-                    { 'data': 'Name' },
-                    { 'data': 'Address' },
-                    {
-                        'data': 'ID',
-                        'data': 'ID', 'render':
-                            function (data) {
-                                return '<button type="button" class="btn btn-secondary m-1" id="editAccountantID" onclick="editCustomer(' + data + ')">Edit</button> <button type="button" class="btn btn-secondary" id="deleteItem" onclick="clearCustomer(' + data + ')">Delete</i></button>'
-                            }
-                    }
-                ]
-            });
+    if (ID == "" || name == "" || address == "")
+    {
+        alert("Input is Empty");
+        return false;
+    }
+    else {
+        $.ajax({
+            url: 'Customers.aspx/AddCustomer',
+            method: 'post',
+            dataType: 'json',
+            data: JSON.stringify({ "id": ID, "name": name, "address": address }),
+            contentType: 'application/json',
+            async: false,
+            success: function (data) {
+                var table = $('#myTable').DataTable();
+                table.destroy();
+                $('#myTable').dataTable({
+                    data: JSON.parse(data.d),
+                    columns: [
+                        { 'data': 'ID' },
+                        { 'data': 'Name' },
+                        { 'data': 'Address' },
+                        {
+                            'data': 'ID',
+                            'data': 'ID', 'render':
+                                function (data) {
+                                    return '<button type="button" class="btn btn-secondary m-1" id="editAccountantID" onclick="editCustomer(' + data + ')">Edit</button> <button type="button" class="btn btn-secondary" id="deleteItem" onclick="clearCustomer(' + data + ')">Delete</i></button>'
+                                }
+                        }
+                    ]
+                });
 
-            $("#status").html("Customer Added!")
-        }
+                $("#status").html("Customer Added!")
+            }
 
-    });
+        });
+    }
+
 }
 
 function clearCustomer(id) {
