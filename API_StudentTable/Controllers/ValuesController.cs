@@ -7,6 +7,8 @@ using System.Web.Http;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Web.Script.Serialization;
+using System.Runtime.Caching;
+
 
 namespace API_StudentTable.Controllers
 {
@@ -59,9 +61,21 @@ namespace API_StudentTable.Controllers
             command.Dispose();
             mycnn.Close();
 
+            ObjectCache cache = MemoryCache.Default;
+
+            if (cache["students"] == null)
+            {
+                var cacheItemPolicy = new CacheItemPolicy
+                {
+                    AbsoluteExpiration = DateTimeOffset.Now.AddDays(1)
+                };
+                var cacheItem = new CacheItem("students", StudentList);
+                cache.Add(cacheItem, cacheItemPolicy);
+            }
+
             JavaScriptSerializer js = new JavaScriptSerializer();
 
-            return js.Serialize(StudentList);
+            return js.Serialize((List<Students>)cache.Get("students"));
         }
 
         // GET api/values/5
