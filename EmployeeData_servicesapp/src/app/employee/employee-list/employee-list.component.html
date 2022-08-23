@@ -1,0 +1,6 @@
+<h3 style="background-color: lightgray; display:flex; justify-content:center; font-family: Arial, Helvetica, sans-serif;">List of Employees</h3>
+
+<ul class="list-group " style="text-align:center" *ngFor="let i of showList">
+<li class="list-group-item list-group-item-action " style="background-color:antiquewhite" (click)="onEmployeeClick(i)">{{i.name}}</li>
+</ul>
+<br><br>
