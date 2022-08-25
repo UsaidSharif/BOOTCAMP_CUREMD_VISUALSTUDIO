@@ -45,7 +45,16 @@ namespace Angular_PenaltyCalculator.Controllers
         [HttpPost]
         public outputReceived Get([FromBody] inputTaken input)
         {
-            outputReceived output = this.penalty.ShowPenalty(input);
+            List<CountryHolidays> countryList = this.penalty.ShowCountries(); /*ShowCountries() exists in the PenCalculator in business layer*/
+            CountryHolidays country = new CountryHolidays(0, "", "", "", 0, 00, null, null);
+            for (int i = 0; i < countryList.Count; i++)
+            {
+                if (input.id == countryList[i].CountryID)
+                {
+                    country = countryList[i];
+                }
+            }
+            outputReceived output = this.penalty.ShowPenalty(country, input);
             return output;
         }
 

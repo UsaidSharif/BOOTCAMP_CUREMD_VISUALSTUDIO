@@ -23,22 +23,22 @@ namespace FinalWeb.BusinessLayer
             return countryList;
         }
 
-        public outputReceived ShowPenalty(inputTaken input)
+        public outputReceived ShowPenalty(CountryHolidays country,inputTaken input)
         {
 
-            double penalty = CalculatePenalty(input);
-            outputReceived output = new outputReceived(penalty, input.country.CountryCurrencySymbol);
+            double penalty = CalculatePenalty(country,input);
+            outputReceived output = new outputReceived(penalty,country.CountryCurrencySymbol);
             return output;
         }
 
 
-        public double CalculatePenalty(inputTaken input)
+        public double CalculatePenalty(CountryHolidays country,inputTaken input)
         {
-            int businessDays = GetBusinessDays( input);
+            int businessDays = GetBusinessDays( country,input);
             double penalty;
             if (businessDays > 10)
             {
-                penalty = (businessDays - 10) * (50 * input.country.ExchangeRate) * (1 + (input.country.TAX / 100));
+                penalty = (businessDays - 10) * (50 * country.ExchangeRate) * (1 + (country.TAX / 100));
             }
             else
             {
@@ -47,7 +47,7 @@ namespace FinalWeb.BusinessLayer
             return penalty;
         }
 
-        public int GetBusinessDays(inputTaken input)
+        public int GetBusinessDays(CountryHolidays country,inputTaken input)
         {
             int days = 0;
             DateTime startDate = input.startDate;
@@ -59,21 +59,21 @@ namespace FinalWeb.BusinessLayer
                 bool weekendCheck = false;
                 bool holidayCheck = false;
 
-                for (int i = 0; i < input.country.weekendList.Count; i++)
+                for (int i = 0; i < country.weekendList.Count; i++)
                 {
-                    if (date.DayOfWeek.ToString() == (input.country.weekendList[i].weekendDays))
+                    if (date.DayOfWeek.ToString() == (country.weekendList[i].weekendDays))
                     {
                         weekendCheck = true;
                     }
                 }
-                //for (int i = 0; i < input.country.HolidayDate; i++)
-                //{
-                //    if (date.DayOfYear == (country.holidays[i].holidayDate).DayOfYear)
-                //    {
-                //        holidayCheck = true;
-                //    }
-                //}
-                if (weekendCheck != true)
+                for (int i = 0; i < country.HolidayList.Count; i++)
+                {
+                    if (date.DayOfYear == (country.HolidayList[i].HolidayDate).DayOfYear)
+                    {
+                        holidayCheck = true;
+                    }
+                }
+                if (weekendCheck != true && holidayCheck!=true)
                 {
                     days++;
                 }

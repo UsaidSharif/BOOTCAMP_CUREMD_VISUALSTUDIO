@@ -19,7 +19,7 @@ export class PenaltyService {
         return this.http.post<FormOutput>('api/penalty/GetPenalty', {
             startDate: input.startDate,
             endDate: input.endDate,
-            country: input.country
+            id: input.id
 
         })
     }

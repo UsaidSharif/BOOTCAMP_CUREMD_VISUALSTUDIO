@@ -1,4 +1,4 @@
-﻿export class Output {
+export class Output {
     penalty: number
     countryCurrency:string
 }

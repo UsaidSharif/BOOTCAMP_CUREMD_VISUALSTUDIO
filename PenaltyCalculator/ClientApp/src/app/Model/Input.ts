@@ -1,7 +1,7 @@
-﻿import { Country } from "./Country"
+import { Country } from "./Country"
 
 export class Input {
     startDate: Date
     endDate: Date
-    country:Country
+    id:number
 }

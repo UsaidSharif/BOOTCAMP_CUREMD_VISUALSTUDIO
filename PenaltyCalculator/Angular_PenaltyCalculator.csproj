@@ -33,14 +33,8 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\Model\file.ts" />
-    <None Remove="ClientApp\src\app\Model\Input.js" />
-    <None Remove="ClientApp\src\app\Model\Input.js.map" />
-    <None Remove="ClientApp\src\app\Model\Input.ts" />
     <None Remove="ClientApp\src\app\Model\inputTaken.js" />
     <None Remove="ClientApp\src\app\Model\inputTaken.ts" />
-    <None Remove="ClientApp\src\app\Model\Output.js" />
-    <None Remove="ClientApp\src\app\Model\Output.js.map" />
-    <None Remove="ClientApp\src\app\Model\Output.ts" />
     <None Remove="ClientApp\src\app\Model\outputReceived.ts" />
   </ItemGroup>
 

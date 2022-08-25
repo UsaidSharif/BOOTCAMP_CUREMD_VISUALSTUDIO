@@ -10,6 +10,6 @@ namespace FinalWeb.BusinessLayer
     public interface IPenaltyCalculator
     {
         public List<CountryHolidays> ShowCountries();
-        public outputReceived ShowPenalty(inputTaken input);
+        public outputReceived ShowPenalty(CountryHolidays country, inputTaken input);
     }
 }

@@ -1,4 +1,4 @@
-﻿export class Country {
+export class Country {
     CountryID: number
     CountryName:string
 }

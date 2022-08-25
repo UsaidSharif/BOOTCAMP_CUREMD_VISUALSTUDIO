@@ -14,7 +14,7 @@ namespace Angular_PenaltyCalculator.Models
 
             public DateTime startDate { get; set; }
             public DateTime endDate { get; set; }
-            public CountryHolidays country { get; set; }
+            public int id { get; set; }
         
     }
 }

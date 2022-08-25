@@ -13,7 +13,7 @@ import { FormOutput } from '../Model/FormOutput';
 export class HomeComponent implements OnInit {
     myForm: FormGroup;
     input: FormInput;
-    countryList: Country[];
+    CountryList: Country[];
     formOutput: FormOutput;
     constructor(private fb: FormBuilder, private PenaltyService: PenaltyService) { }
 
@@ -23,12 +23,12 @@ export class HomeComponent implements OnInit {
 
             startDate: ['', [Validators.required]],
             endDate: ['', [Validators.required]],
-            country: ['Please Select Country', [Validators.required]]
+            id: ['Please Select Country', [Validators.required]]
         })
 
         this.PenaltyService.GetCountries().pipe(map((data: Country[]) => {
             if (data != null && data != undefined) {
-                this.countryList = data;
+                this.CountryList = data;
             }
         })).subscribe();
              
@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
         this.input = {
             startDate: this.myForm.get('startDate').value,
             endDate: this.myForm.get('endDate').value,
-            country: this.myForm.get('country').value
+            id: parseInt(this.myForm.get('id').value)
         }
         console.log(this.input)
         this.PenaltyService.GetPenalty(this.input).pipe(map((data: FormOutput) => {

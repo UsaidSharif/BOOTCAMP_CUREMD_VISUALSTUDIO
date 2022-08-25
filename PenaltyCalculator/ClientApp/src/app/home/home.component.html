@@ -8,10 +8,13 @@
     <input type="date" class="form-control" id="endDate" name="endDate" formControlName="endDate">
   </div>
   <div class="form-group">
-    <select  class="form-select" name="country"  formControlName="country">
+    <select  class="form-select" name="country"  formControlName="id">
       <option selected>Select Country</option>
-      <option *ngFor="let country of countryList" [ngValue]="country">{{country.countryName}}</option>
+      <option *ngFor="let Country of CountryList" [value]="Country.countryID">{{Country.countryName}}</option>
     </select>
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+<div>
+  Calculated Penalty is:{{this.formOutput.countryCurrency}} {{this.formOutput.penalty}}
+</div>
